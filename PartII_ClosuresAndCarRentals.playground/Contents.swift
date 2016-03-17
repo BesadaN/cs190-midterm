@@ -5,7 +5,7 @@ In this part, you will write a function that calculates the price of a car renta
 
 ## Background
 
-The price of a car rental based on how days and hours it is rented for, which isn't quite the same thing as just charing by the hour.
+The price of a car rental based on how days and hours it is rented for, which isn't quite the same thing as just charging by the hour.
 
 Example:
 
@@ -26,17 +26,20 @@ struct RentalCar {
 
 // This is the function you are implementing for Part II A.
 func price(rentalCar: RentalCar, totalHours: Int) -> Float {
-    let days = 0  // this you need to compute from totalHours
-    let hours = 0 // you also need to compute this from totalHours
+    let days = (totalHours/24)   // this you need to compute from totalHours
+    let hours = (totalHours % 24) // you also need to compute this from totalHours
     let dailyPrice = rentalCar.dailyPrice
     let hourlyPrice = rentalCar.hourlyPrice
-    return days * dailyPrice + hours * hourlyPrice // this return statement isn't quite right yet!
+    // casting floats 
+    let total = Float(days) * dailyPrice +  Float(hours) * hourlyPrice // this return statement isn't quite right yet!
+    return total
+    
 }
 
 // This is the function you are implementing for Part II B.
 func pricingFunctionForCar(rentalCar: RentalCar) -> (Int) -> (Float) {
     func priceForHours(totalHours: Int) -> Float {
-        return 0.0 // with what you did in Part II A, fixing this return to return the right thing is easy
+        return priceForHours(totalHours)   // with what you did in Part II A, fixing this return to return the right thing is easy
     }
     return priceForHours // this is a function that is being returned!!
 }
